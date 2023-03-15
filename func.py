@@ -122,5 +122,27 @@ def least_sqrs(xd, yd):
     return solution
 
 
+# BI LINEAR REGRESSION EQUATION
+def regression_eqn(ind_array, dep_array, linear=True):
+    # input as two arrays or 2 columns of a DF
+    x_4 = (ind_array**4).sum()
+    x_3 = (ind_array**3).sum()
+    x_2 = (ind_array**2).sum()
+    x_1 = (ind_array).sum()
+    n = len(ind_array)
+    xy_2 = ((ind_array**2 * dep_array)).sum()
+    xy = (ind_array * dep_array).sum()
+    if linear:
+        matrix1 = [[x_2, ind_array.sum()], [ind_array.sum(), n]]
+        matrix2 = [[xy], [dep_array.sum()]]
+        invarray1 = np.linalg.inv(matrix1)
+        solution = np.dot(invarray1, matrix2)
+        return solution
+    else:
+        matrix1 = [[x_4, x_3, x_2], [x_3, x_2, x_1], [x_2, x_1, n]]
+        matrix2 = [[xy_2], [xy], [dep_array.sum()]]
+        invarray1 = np.linalg.inv(matrix1)
+        solution = np.dot(invarray1, matrix2)
+        return solution[0][0], solution[1][0], solution[2][0]
 
 
