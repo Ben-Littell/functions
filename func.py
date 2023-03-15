@@ -122,8 +122,8 @@ def least_sqrs(xd, yd):
     return solution
 
 
-# BI LINEAR REGRESSION EQUATION
-def bilinear_reg(ind_array, dep_array, linear=True):
+# REGRESSION EQUATION FOR LINEAR AND BILINEAR
+def regression_eqn(ind_array, dep_array, linear=True):
     # input as two arrays or 2 columns of a DF
     x_4 = (ind_array**4).sum()
     x_3 = (ind_array**3).sum()
