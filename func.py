@@ -209,22 +209,21 @@ def scatter_plot(data1, data2, slope, y_int, xt='X', yt='Y', title='Graph'):
 
 def scatter_plot_bilin(data1, data2, coeff2, coeff1, y_int, title='Graph', xt='X', yt='Y'):
     data1 = data1.tolist()
-    data1 = sorted(data1)
+    data1_s = sorted(data1)
     data2 = data2.tolist()
     y_vals = []
     e1 = []
     e2 = []
     x_data = [min(data1), max(data1)]
     for val in range(len(data1)):
-        ans = (coeff2 * (data1[val]**2)) + (coeff1*data1[val]) + y_int
+        ans = (coeff2 * (data1_s[val]**2)) + (coeff1*data1_s[val]) + y_int
         y_vals.append(ans)
-    plt.plot(data1, y_vals, '-r')
+    plt.plot(data1_s, y_vals, '-r')
     plt.scatter(data1, data2)
     plt.title(title)
     plt.xlabel(xt)
     plt.ylabel(yt)
     plt.text(x_data[1], y_vals[1], f'Y={round(coeff2, 5)}*X^2+{round(coeff1, 2)}X+{round(y_int, 2)}', color='g')
     plt.show()
-    
     
     
